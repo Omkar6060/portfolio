@@ -177,6 +177,16 @@ blockquote{margin:30px 0 0;padding:6px 0 6px 22px;border-left:3px solid var(--re
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:22px var(--pad);border-top:1px solid var(--line);font-size:12px;color:var(--dim);position:relative;z-index:2}
 .foot a{color:var(--mute);text-decoration:none}
 
+/* portrait */
+.portrait{position:relative;margin:0 0 22px;border:1px solid var(--line2);border-radius:10px;overflow:hidden;
+  background:radial-gradient(circle at 55% 35%,rgba(255,59,59,.28),transparent 60%),linear-gradient(180deg,#111319,#08090c);aspect-ratio:4/5;max-width:100%}
+.portrait img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:100%;width:auto;max-width:none;filter:contrast(1.05)}
+.portrait::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);z-index:1;pointer-events:none}
+.portrait figcaption{position:absolute;left:14px;right:14px;bottom:12px;z-index:2;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;color:#fff}
+.corner{position:absolute;width:16px;height:16px;border:2px solid var(--red);z-index:2}
+.corner.tl{left:10px;top:10px;border-right:0;border-bottom:0}.corner.tr{right:10px;top:10px;border-left:0;border-bottom:0}
+.corner.bl{left:10px;bottom:36px;border-right:0;border-top:0}.corner.br{right:10px;bottom:36px;border-left:0;border-top:0}
+
 /* venture */
 .venture{margin-top:22px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:center;
   border:1px solid var(--red);border-radius:10px;padding:clamp(22px,3vw,40px);background:linear-gradient(120deg,rgba(255,59,59,.10),rgba(255,59,59,0) 60%),var(--panel)}

@@ -4,6 +4,7 @@
    3. Run publish.cmd.
    Optional "shape": "wide" (2 columns), "tall" (2 rows) or "" (normal). Leave it out for an automatic layout. */
 window.PHOTOS = [
+  { src: "assets/omkar.png", caption: "Omkar Behera", shape: "tall" },
   // { src: "assets/photos/drdo.jpg",      caption: "DRDO internship, 2024" },
   // { src: "assets/photos/iit-bbsr.jpg",  caption: "Cybersecurity workshop, IIT Bhubaneswar" },
   // { src: "assets/photos/desk.jpg",      caption: "My lab setup" },
