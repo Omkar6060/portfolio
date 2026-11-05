@@ -131,10 +131,33 @@
   };
   addEventListener("scroll", onScroll, { passive: true }); onScroll();
   if (!reduce && "IntersectionObserver" in window) {
-    const els = document.querySelectorAll(".cap,.case,.flag,.sig,.timeline>li,.arsenal div");
+    const els = document.querySelectorAll(".cap,.case,.flag,.venture,.sig,.timeline>li,.arsenal div");
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
     els.forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("reveal", "pre"); io.observe(el); } });
   }
+
+  /* ---------- photo field log ---------- */
+  const grid = $("#photoGrid"), lb = $("#lightbox");
+  const list = (window.PHOTOS || []).filter(x => x && x.src);
+  const shapes = ["wide", "", "tall", "", "", ""];
+  if (!list.length) {
+    grid.innerHTML = Array.from({ length: 6 }, (_, k) =>
+      `<figure class="ph empty ${shapes[k]}"><span><b>PHOTO_0${k + 1}</b>add a photo in assets/photos</span></figure>`).join("");
+  } else {
+    list.forEach((p, k) => {
+      const f = document.createElement("figure");
+      f.className = "ph " + (p.shape ?? shapes[k % shapes.length]);
+      const img = new Image(); img.src = p.src; img.alt = p.caption || "Photo"; img.loading = "lazy";
+      img.onerror = () => f.remove();
+      f.appendChild(img);
+      if (p.caption) { const c = document.createElement("figcaption"); c.innerHTML = `<b>${String(k + 1).padStart(2, "0")}</b>`; c.append(p.caption); f.appendChild(c); }
+      f.addEventListener("click", () => { lb.querySelector("img").src = p.src; lb.querySelector("img").alt = p.caption || ""; lb.querySelector("p").textContent = p.caption || ""; lb.hidden = false; });
+      grid.appendChild(f);
+    });
+  }
+  const closeLb = () => { lb.hidden = true; };
+  lb.addEventListener("click", e => { if (e.target === lb || e.target.closest(".lb-close")) closeLb(); });
+  addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
 
   /* ---------- floating analyst cursors ---------- */
   if (reduce || innerWidth < 640) return;

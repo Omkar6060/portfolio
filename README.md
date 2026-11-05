@@ -8,5 +8,6 @@ Static site (HTML, CSS, JS), no build step. Hosted on GitHub Pages from the `mai
 - `assets/style.css` — design
 - `assets/main.js` — terminal, live traffic graph, analyst cursors, status bar
 - `assets/omkar-behera-resume.pdf` — resume download
+- `assets/photos.js` + `assets/photos/` — the photo section (add a file, add one line, publish)
 
 To update: edit the files, then run `publish.cmd` again.
